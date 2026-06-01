@@ -1,0 +1,41 @@
+## Node
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+## Build / output
+dist/
+build/
+coverage/
+**/coverage/
+.nyc_output/
+.parcel-cache/
+
+## Environment
+.env
+.env.local
+.env.*.local
+
+## IDEs
+.vscode/
+.idea/
+
+## Logs
+*.log
+*.log.*
+
+## macOS
+.DS_Store
+
+## E2E artifacts
+e2e/screenshots/
+**/screenshots/
+
+## Misc
+*.pid
+*.seed
+*.tgz
+.cache/

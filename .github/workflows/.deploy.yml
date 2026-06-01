@@ -1,0 +1,51 @@
+name: Teste e Deploy TI323
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '20'
+
+      - name: Install root dependencies
+        run: npm install
+
+      - name: Install app dependencies
+        run: |
+          cd app
+          npm install
+
+      - name: Install api dependencies
+        run: |
+          cd api
+          npm install
+
+      - name: Install e2e dependencies
+        run: |
+          cd e2e
+          npm install
+
+      - name: Start API server
+        run: |
+          cd api
+          node index.js > api.log 2>&1 &
+          sleep 5
+
+      - name: Start app server
+        run: |
+          cd app
+          node index.js > app.log 2>&1 &
+          sleep 5
+
+      - name: Run Base.test.js
+        run: npm test
+    
